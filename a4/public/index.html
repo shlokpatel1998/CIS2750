@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GPS Data Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CHANGE ME">
+    <meta name="keywords" content="CHANGE ME">
+    <meta name="author" content="shlok">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Custom CSS End -->
+</head>
+
+<body>
+    <header>
+        <div id="nav" class="topbar">
+            <h3>GPS Data Viewer</h1>
+        </div>
+    </header>
+    <p></p>
+
+    <div id="logpanel" class="filelogpanel">
+        <h4>File Log Panel</h4>
+        <div id="filetable" class="table">
+            <table id="files">
+                <tr>
+                    <th>File name (click to download)</th>
+                    <th>Version</th>
+                    <th>Creator</th>
+                    <th>Number of waypoints</th>
+                    <th>Number of routes</th>
+                    <th>Number of tracks</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p></p>
+    <p></p>
+
+    <form ref='uploadForm'
+        id='uploadForm'
+        action='/upload'
+        method='post'
+        encType="multipart/form-data">
+        <div class="form-group">
+            <input type="file" accept=".gpx" id="browse-click" name="uploadFile" class="btn btn-secondary" required>
+            <input type='submit' id="submit-click" value='Upload' class="btn btn-secondary">
+        </div>
+    </form>
+
+    <div id="viewpanel" class="fileviewpanel">
+        <h4>View Panel</h4>
+        <p></p>
+        
+        <select name="dropdown" id="dropdown">
+            <option value="Select an Option">Selections</option>
+        </select>
+    </div>
+
+    <div id="logpanel" class="filelogpanel">
+        GPX Data Information
+        <div id="filetable" class="table">
+            <table id="viewtable">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Name</th>
+                        <th>Number of Points</th>
+                        <th>Length</th>
+                        <th>Loop</th>
+                        <th>More Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p></p>
+
+    <div id="create" class="form-rename">
+        <h4>Rename Route/Track</h4>
+    </div>
+    <p></p>
+
+    <div id="rename" class="form-rename">
+        Choose Route/Track
+        <p></p>
+        
+        <select name="dropdown" id="dropdown_rename">
+            <option value="Select an Option">Selections</option>
+        </select>
+    </div>
+    <p></p>
+
+    <form ref='someform'
+          id='renameForm'>
+          <div class="form-rename">
+                <label for="entryBox">Enter new name:</label>
+                <input type="text" class="form-control" id="entryBox" value="" placeholder="Placeholder">
+          </div>
+          <p></p>
+        <div>
+            <input type='submit' class="btn btn-secondary">
+        </div>
+        <p></p>
+    </form>
+
+
+    <div id="create" class="form-creategpx">
+        <h4>CREATE GPX</h4>
+    </div>
+    <p></p>
+
+    <div id="creategpx" class="form-creategpx">
+        <form id="creategpx_forms">
+            <p>
+                <div>
+                    <label>Name of file:</label><input type="text" id="file_name_gpx" required>
+                    <label>Creator:</label><input type = "text" id="creator_gpx" required>
+                </div>
+            </p>
+            <p>
+                <div>
+                    <input type='submit' id="submit-click_creategpx" value='Submit' class="btn3" >
+                </div>
+            </p>
+        </form>
+    </div>
+
+    <p></p>
+
+    <div id="rt_add" class="form-addroute">
+        <p></p>
+        <h4>ADD Route</h4>
+        <p></p>
+        <select name="dropdown" id="dropdown_addroutes">
+            <option value="Select an Option">Selections</option>
+        </select>
+        <p></p>
+    </div>
+    <p></p>
+
+    <div id="addroute" class="form-addroute">
+        <p></p>
+        <p>
+            <form id="createnewpoint">
+                <div>
+                    <label>Latitude:</label><input type="text" id="lat" min=-90 max=90 required>
+                    <label>Longitude:</label><input type = "text" id="lon" min=-180 max=180 required>
+                    <button id="addpt" type="button" class="btn3">Add Point</button>
+                    <button id="addrt" type="button" class="btn4">Add Route</button>
+                </div>
+            </form>
+        </p>
+
+    </div>
+    <p></p>
+
+    <div class="form-dbs">
+        <p></p>
+        <h4>DATABASE FUNCTIONALITY</h4>
+        <p></p>
+    </div>
+
+    <div id="dbs" class="form-dbs">
+        <p></p>
+        <p>
+            <form id="creds">
+                <div>
+                    <label>Username:</label><input type="text" id="name" required>
+                    <label>Password:</label><input type = "text" id="password" required>
+                    <label>Database Name:</label><input type = "text" id="db_name" required>
+                    <button id="login_bt" type="button" class="btn3">Login</button>
+                </div>
+                <p></p>
+                <div>
+                    <button id="store_all" type="button" class="btn3">Store All Files</button>
+                    <button id="clear_all" type="button" class="btn3">Clear Files</button>
+                    <button id="db_status" type="button" class="btn3">DB Status</button>
+                </div>
+                <p></p>
+            </form>
+        </p>
+    </div>
+
+    <p></p>
+
+    <div class="form-query">
+        <p></p>
+        <h4>Run Queries</h4>
+        <p></p>
+    </div>
+    <p></p>
+
+    <div class="form-query">
+        <p></p>
+        <h5>Query 1: Sort all Routes</h5>
+        <p></p>
+        <div id="q1" class="form-query">
+            <p></p>
+            <form id="q1_options">
+                <div>
+                    <button id="q1_a" type="button" class="btn3">Sort by Length</button>
+                    <button id="q1_b" type="button" class="btn3">Sort by Name</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <p></p>
+
+    <div class="form-query">
+        <p></p>
+        <h5>Query 2: Sort Routes in File</h5>
+        <p></p>
+        <div id="q2" class="form-query">
+            <p></p>
+            <form id="q2_options">
+                <div>
+                    <button id="q2_a" type="button" class="btn3">Sort by Length</button>
+                    <button id="q2_b" type="button" class="btn3">Sort by Name</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="choose_q" class="form-query">
+        Choose File
+        <p></p>
+        
+        <select name="dropdown" id="dropdown_query">
+            <option value="Select an Option">Selections</option>
+        </select>
+    </div>
+
+    <p></p>
+
+    <div class="form-query">
+        <p></p>
+        <h5>Query 3: Sort Points</h5>
+        <p></p>
+        <div id="q3" class="form-query">
+            <p></p>
+            <form id="q3_options">
+                <div>
+                    <button id="q3" type="button" class="btn3">Sort by Point Index</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <p></p>
+
+    <form id="choose_route_q" class="form-query">
+        Enter Route ID
+        <p></p>
+        <div class="form-rename">
+            <input type="text" class="form-control" id="entryRoute" value="" placeholder="Placeholder">
+        </div>
+        <p></p>
+        <div>
+            <input type='submit' class="btn btn-secondary">
+        </div>        
+    </form>
+
+
+    <div id="query_table" class="filelogpanel">
+        Query Table
+        <div id="q_table" class="table">
+            <table id="qtable">
+                <thead>
+                    <tr>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p></p>
+
+
+
+
+
+
+
+
+    <!-- Leave me at the bottom of body -->
+    <script src="/index.js"></script>
+</body>
+
+</html>
+
+

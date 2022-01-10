@@ -1,0 +1,14 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+*.o
+*.gpx
+*.xsd
+run
+*.so
+*.DSYM
+test1*
+test2*
+mem*
+demo*
