@@ -17,7 +17,7 @@ the option to create custom files using the front-end.
 ## A3
 - write the "glue" that binds the backend C to the .js file by allowing parsing in the server-side
 - develop GUI for the frontend application using HTML, CSS, and JavaScript in the client-side
-- implement server functionality with routes/endpoints using Node.js with callback functions
+- implement server functionality with routes/endpoints (API) using Node.js with callback functions
 
 ## A4
 - design a database using MySQL for storing GPX data in a server
