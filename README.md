@@ -1,4 +1,4 @@
-CIS2750 - Software Development and Integration
+# CIS2750 - Software Development and Integration
 
 This repo features 4 parts of the assignment where a4 is the finished application
 with node.js, C (GPX-Parser), and SQL database for data. This application reads GPX files
